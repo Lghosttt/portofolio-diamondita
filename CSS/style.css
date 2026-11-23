@@ -1068,3 +1068,242 @@ body {
     }
 }
 
+
+/* ===================================
+   1. SCROLL REVEAL ANIMATION
+=================================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+
+
+/* ===================================
+   2. CUTE SPARKLE CURSOR
+=================================== */
+
+.cute-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    pointer-events: none;
+
+    color: #C18B8E;
+    font-size: 27px;
+    line-height: 1;
+
+    transform: translate(-50%, -50%);
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease;
+}
+
+.cursor-heart {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    pointer-events: none;
+
+    color: #8B2E35;
+    font-size: 14px;
+    line-height: 1;
+
+    transform: translate(-50%, -50%);
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease;
+}
+
+/* Saat hover */
+.cute-cursor.is-hovering {
+    color: #8B2E35;
+    transform: translate(-50%, -50%) rotate(25deg) scale(1.45);
+}
+
+.cursor-heart.is-hovering {
+    color: #C18B8E;
+    transform: translate(-50%, -50%) scale(1.4);
+}
+
+/* Saat klik */
+.cute-cursor.is-clicking {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* Sembunyikan cursor bawaan */
+body.custom-cursor-active,
+body.custom-cursor-active a,
+body.custom-cursor-active button {
+    cursor: none;
+}
+
+/* Nonaktifkan di perangkat touchscreen */
+@media (hover: none), (pointer: coarse) {
+    .cute-cursor,
+    .cursor-heart {
+        display: none;
+    }
+
+    body.custom-cursor-active,
+    body.custom-cursor-active a,
+    body.custom-cursor-active button {
+        cursor: auto;
+    }
+}
+
+
+
+/* ===================================
+   HERO TYPEWRITER EFFECT
+=================================== */
+
+/* Kursor mengetik */
+#hello-typing::after,
+[data-typewriter].is-typing::after {
+    content: "|";
+    display: inline-block;
+    margin-left: 3px;
+    color: #C18B8E;
+    animation: typingBlink 0.8s infinite;
+}
+
+/* Animasi kedipan kursor */
+@keyframes typingBlink {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Pertahankan karakter italic pada impact */
+.typing-impact {
+    display: block;
+}
+
+/* Hormati pengaturan reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    #hello-typing::after,
+    [data-typewriter].is-typing::after {
+        animation: none;
+    }
+}
+
+
+/* Sembunyikan teks sebelum animasi dimulai */
+#hello-typing,
+.hero [data-typewriter] {
+    visibility: hidden;
+}
+
+/* Tampilkan saat proses mengetik dimulai */
+#hello-typing.is-active,
+.hero [data-typewriter].is-typing,
+.hero [data-typewriter].is-typed {
+    visibility: visible;
+}
+
+
+/* ===================================
+   4. VIDEO POP-UP ANIMATION
+=================================== */
+
+/* Video intro */
+.hero-video {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 18px 45px rgba(35, 45, 65, 0.16);
+
+    animation: videoPopUp 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+/* Animasi saat pertama muncul */
+@keyframes videoPopUp {
+    0% {
+        opacity: 0;
+        transform: translateY(35px) scale(0.92);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Efek hover pada video intro */
+.hero-video:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 25px 55px rgba(35, 45, 65, 0.22);
+}
+
+
+/* ===================================
+   5. ROUNDED VIDEO CARDS
+=================================== */
+
+/* Container video project */
+.project-card,
+.project-image,
+.video-card {
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* Video di dalam project card */
+.project-card video,
+.project-image video,
+.video-card video {
+    display: block;
+    width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    object-fit: cover;
+
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
+}
+
+/* Efek saat diarahkan mouse */
+.project-card:hover video,
+.project-image:hover video,
+.video-card:hover video {
+    transform: scale(1.035);
+    filter: brightness(1.04);
+}
+
+/* Sudut rounded pada thumbnail atau gambar */
+.project-card img,
+.project-image img,
+.video-card img {
+    border-radius: 18px;
+    display: block;
+    width: 100%;
+}
